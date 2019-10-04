@@ -76,7 +76,7 @@ export default class Game extends Vue {
     document.getElementById(`box-${y}${x}`)!.classList.remove("putable");
     this.help = "通信中...";
     const { data } = await this.$axios.post(
-      "http://othello.1e9plus7.com:5050/put",
+      "https://othello-254918.appspot.com/put",
       {
         board: this.encodeBoard(),
         x: x,
@@ -100,7 +100,7 @@ export default class Game extends Vue {
     if (qpos === "pass") {
       this.help = "CPUは置ける駒がないようです．";
       const ev = await this.$axios.post(
-        "http://othello.1e9plus7.com:5050/eval",
+        "https://othello-254918.appspot.com/eval",
         {
           board: this.encodeBoard(),
           mode: this.mode,
@@ -127,7 +127,7 @@ export default class Game extends Vue {
     document.getElementById(`box-${y}${x}`)!.classList.add("player");
     await wait(400);
     this.board = q;
-    let ev = await this.$axios.post("http://othello.1e9plus7.com:5050/eval", {
+    let ev = await this.$axios.post("https://othello-254918.appspot.com/eval", {
       board: this.encodeBoard(),
       mode: this.mode,
       difficulty: this.difficulty
@@ -141,7 +141,7 @@ export default class Game extends Vue {
       await wait(300);
       this.help += ".";
       const { data } = await this.$axios.post(
-        "http://othello.1e9plus7.com:5050/put",
+        "https://othello-254918.appspot.com/put",
         {
           board: this.encodeBoard(),
           x: -1,
@@ -157,7 +157,7 @@ export default class Game extends Vue {
         document
           .getElementById(`box-${qpos2[1]}${qpos2[0]}`)!
           .classList.add("cpu");
-        ev = await this.$axios.post("http://othello.1e9plus7.com:5050/eval", {
+        ev = await this.$axios.post("https://othello-254918.appspot.com/eval", {
           board: this.encodeBoard(),
           mode: this.mode,
           difficulty: this.difficulty
@@ -206,7 +206,7 @@ export default class Game extends Vue {
     if (this.difficulty === "2") this.modetxt = "やや";
     if (this.difficulty === "1") this.modetxt = "きもーち";
     this.modetxt += this.mode === "settai" ? "接待" : "本気";
-    const init = await this.$axios.get("http://othello.1e9plus7.com:5050");
+    const init = await this.$axios.get("https://othello-254918.appspot.com");
     if (init.status !== 200) {
       this.$router.push("/error");
     }
@@ -221,7 +221,7 @@ export default class Game extends Vue {
       [".", ".", ".", ".", ".", ".", ".", "."]
     ];
     const { data } = await this.$axios.post(
-      "http://othello.1e9plus7.com:5050/eval",
+      "https://othello-254918.appspot.com/eval",
       {
         board: this.encodeBoard(),
         mode: this.mode,
