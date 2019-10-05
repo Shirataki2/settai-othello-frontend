@@ -249,7 +249,7 @@ export default class Game extends Vue {
 #result {
   font-family: "Noto Serif JP", serif;
   font-size: 110px;
-  position: absolute;
+  position: fixed;
   width: 100%;
   left: 0px !important;
   top: 30%;
@@ -273,6 +273,7 @@ export default class Game extends Vue {
 
 #you-score,
 #cpu-score {
+  font-family: "Noto Serif JP", serif;
   font-size: 88px !important;
 }
 

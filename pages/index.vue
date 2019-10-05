@@ -24,6 +24,7 @@
       <label for="radio-13">きもーち{{picked === 'settai' ? "接待" : "本気"}}</label>
     </div>
     <a @click="play" class="btn-flat-border">ゲーム開始！</a>
+    <p style="margin: 1em;">Version 1.0</p>
     <p style="margin: 5em;">&copy; KCS 2019</p>
   </div>
 </template>
