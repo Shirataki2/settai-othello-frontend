@@ -1,12 +1,12 @@
 <template>
   <div align="center">
     <h4 style="padding: 15px">{{ modetxt }}モード</h4>
-    <span id="you">⚫️あなた<br/><span id="you-score">{{ N_Black }}</span></span>
-    <span id="cpu">⚪️CPUちゃん<br/><span id="cpu-score">{{ N_White }}</span></span>
+    <span id="you"><img src="/B.png">あなた<br/><span id="you-score">{{ N_Black }}</span></span>
+    <span id="cpu"><img src="/W.png">CPUちゃん<br/><span id="cpu-score">{{ N_White }}</span></span>
     <template v-for="(row, x) in board">
       <template v-for="(col, y) in row">
         <span class="box" :id="`box-${y}${x}`" @click="push($event)">
-          {{ col.replace('.', '').replace('B', '⚫️').replace('W', '⚪️') }}
+          <img v-if="col !== '.'" :src="`/${col}.png`" alt="">
         </span>
       </template>
       <br/>
@@ -73,7 +73,14 @@ export default class Game extends Vue {
     const y = parseInt(tgt.id[4]);
     const x = parseInt(tgt.id[5]);
     if (!putable) return;
-    document.getElementById(`box-${y}${x}`)!.classList.remove("putable");
+    for (let y = 0; y < 8; y++) {
+      for (let x = 0; x < 8; x++) {
+        document.getElementById(`box-${y}${x}`)!.classList.remove("putable");
+        document.getElementById(`box-${y}${x}`)!.classList.remove("player");
+        document.getElementById(`box-${y}${x}`)!.classList.remove("cpu");
+      }
+    }
+    document.getElementById(`box-${y}${x}`)!.classList.add("player");
     this.help = "通信中...";
     const { data } = await this.$axios.post(
       "https://othello-254918.appspot.com/put",
@@ -271,6 +278,14 @@ export default class Game extends Vue {
   left: 80%;
 }
 
+#you img {
+  width: 27px;
+}
+
+#cpu img {
+  width: 27px;
+}
+
 #you-score,
 #cpu-score {
   font-family: "Noto Serif JP", serif;
@@ -283,6 +298,10 @@ export default class Game extends Vue {
 
 #cpu-score {
   color: blue;
+}
+
+.box img {
+  width: 100%;
 }
 
 #back {
@@ -312,11 +331,11 @@ export default class Game extends Vue {
 }
 
 .player {
-  background-color: white;
+  background-color: rgb(255, 32, 77);
 }
 
 .cpu {
-  background-color: black;
+  background-color: rgb(77, 32, 255);
 }
 
 .btn-flat-border {
