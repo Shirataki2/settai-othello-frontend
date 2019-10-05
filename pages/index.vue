@@ -1,7 +1,7 @@
 <template>
   <div class="container" align="center">
     <h1 id="maintitle">
-      接待オセロ
+      {{picked === 'settai' ? "接待" : "卍"}}オセロ
     </h1>
     <h2 class="menu">
       モード選択
