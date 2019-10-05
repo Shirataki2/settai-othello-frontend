@@ -17,7 +17,7 @@
     </h2>
     <div class="radio" align="center">
       <input type="radio" name="radio11" class="radio-input" id="radio-11" value="3" v-model="difficulty">
-      <label for="radio-11">超{{picked === 'settai' ? "接待" : "本気"}}</label>
+      <label for="radio-11">超{{picked === 'settai' ? "接待" : "本気"}}(時間がかかります)</label>
       <input type="radio" name="radio12" class="radio-input" id="radio-12" value="2" v-model="difficulty">
       <label for="radio-12">やや{{picked === 'settai' ? "接待" : "本気"}}</label>
       <input type="radio" name="radio13" class="radio-input" id="radio-13" value="1" v-model="difficulty">
