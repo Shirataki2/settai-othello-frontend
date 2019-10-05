@@ -17,14 +17,14 @@
     </h2>
     <div class="radio" align="center">
       <input type="radio" name="radio11" class="radio-input" id="radio-11" value="4" v-model="difficulty">
-      <label for="radio-11">{{picked === 'settai' ? "接待" : "本気"}}</label>
+      <label for="radio-11">結構{{picked === 'settai' ? "接待" : "本気"}}</label>
       <input type="radio" name="radio12" class="radio-input" id="radio-12" value="3" v-model="difficulty">
       <label for="radio-12">やや{{picked === 'settai' ? "接待" : "本気"}}</label>
       <input type="radio" name="radio13" class="radio-input" id="radio-13" value="1" v-model="difficulty">
       <label for="radio-13">きもーち{{picked === 'settai' ? "接待" : "本気"}}</label>
     </div>
     <a @click="play" class="btn-flat-border">ゲーム開始！</a>
-    <p style="margin: 1em;">Version 1.0</p>
+    <p style="margin: 1em;">Version 1.1</p>
     <p style="margin: 5em;">&copy; KCS 2019</p>
   </div>
 </template>
