@@ -16,9 +16,9 @@
       難易度選択
     </h2>
     <div class="radio" align="center">
-      <input type="radio" name="radio11" class="radio-input" id="radio-11" value="3" v-model="difficulty">
-      <label for="radio-11">超{{picked === 'settai' ? "接待" : "本気"}}(時間がかかります)</label>
-      <input type="radio" name="radio12" class="radio-input" id="radio-12" value="2" v-model="difficulty">
+      <input type="radio" name="radio11" class="radio-input" id="radio-11" value="4" v-model="difficulty">
+      <label for="radio-11">{{picked === 'settai' ? "接待" : "本気"}}</label>
+      <input type="radio" name="radio12" class="radio-input" id="radio-12" value="3" v-model="difficulty">
       <label for="radio-12">やや{{picked === 'settai' ? "接待" : "本気"}}</label>
       <input type="radio" name="radio13" class="radio-input" id="radio-13" value="1" v-model="difficulty">
       <label for="radio-13">きもーち{{picked === 'settai' ? "接待" : "本気"}}</label>
@@ -35,7 +35,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component({})
 export default class Index extends Vue {
   picked: string = "settai";
-  difficulty: string = "2";
+  difficulty: string = "3";
 
   play() {
     this.$store.commit("setGameConf", {

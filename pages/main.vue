@@ -202,8 +202,8 @@ export default class Game extends Vue {
   async mounted() {
     this.mode = this.$store.state.mode;
     this.difficulty = this.$store.state.difficulty;
-    if (this.difficulty === "3") this.modetxt = "超";
-    if (this.difficulty === "2") this.modetxt = "やや";
+    if (this.difficulty === "4") this.modetxt = "";
+    if (this.difficulty === "3") this.modetxt = "やや";
     if (this.difficulty === "1") this.modetxt = "きもーち";
     this.modetxt += this.mode === "settai" ? "接待" : "本気";
     const init = await this.$axios.get("https://othello-254918.appspot.com");
