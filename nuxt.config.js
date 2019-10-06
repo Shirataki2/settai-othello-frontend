@@ -1,4 +1,6 @@
 
+const dev = process.env.NODE_ENV !== 'production'
+
 export default {
   mode: 'spa',
   head: {
@@ -28,6 +30,7 @@ export default {
     '@nuxtjs/netlify-files'
   ],
   axios: {
+    baseURL: (dev ? "http://localhost:5050" : "https://othello-254918.appspot.com")
   },
   build: {
     extend(config, ctx) {

@@ -82,16 +82,13 @@ export default class Game extends Vue {
     }
     document.getElementById(`box-${y}${x}`)!.classList.add("player");
     this.help = "通信中...";
-    const { data } = await this.$axios.post(
-      "https://othello-254918.appspot.com/put",
-      {
-        board: this.encodeBoard(),
-        x: x,
-        y: y,
-        mode: this.mode,
-        difficulty: this.difficulty
-      }
-    );
+    const { data } = await this.$axios.post("/put", {
+      board: this.encodeBoard(),
+      x: x,
+      y: y,
+      mode: this.mode,
+      difficulty: this.difficulty
+    });
     this.help = "CPU思考中...";
     const p: string[][] = data.player;
     const q: string[][] = data.com;
@@ -106,14 +103,11 @@ export default class Game extends Vue {
     }
     if (qpos === "pass") {
       this.help = "CPUは置ける駒がないようです．";
-      const ev = await this.$axios.post(
-        "https://othello-254918.appspot.com/eval",
-        {
-          board: this.encodeBoard(),
-          mode: this.mode,
-          difficulty: this.difficulty
-        }
-      );
+      const ev = await this.$axios.post("/eval", {
+        board: this.encodeBoard(),
+        mode: this.mode,
+        difficulty: this.difficulty
+      });
       if (ev.data.put.length === 0) {
         this.help = "CPUもプレイヤーも置ける駒がないようです．終局です";
         this.endflag = true;
@@ -134,7 +128,7 @@ export default class Game extends Vue {
     document.getElementById(`box-${y}${x}`)!.classList.add("player");
     await wait(400);
     this.board = q;
-    let ev = await this.$axios.post("https://othello-254918.appspot.com/eval", {
+    let ev = await this.$axios.post("/eval", {
       board: this.encodeBoard(),
       mode: this.mode,
       difficulty: this.difficulty
@@ -147,16 +141,13 @@ export default class Game extends Vue {
       this.help += ".";
       await wait(300);
       this.help += ".";
-      const { data } = await this.$axios.post(
-        "https://othello-254918.appspot.com/put",
-        {
-          board: this.encodeBoard(),
-          x: -1,
-          y: -1,
-          mode: this.mode,
-          difficulty: this.difficulty
-        }
-      );
+      const { data } = await this.$axios.post("/put", {
+        board: this.encodeBoard(),
+        x: -1,
+        y: -1,
+        mode: this.mode,
+        difficulty: this.difficulty
+      });
       const q2: string[][] = data.com;
       const qpos2: [number, number] | string = data.pos;
       if (qpos2 !== "pass") {
@@ -164,7 +155,7 @@ export default class Game extends Vue {
         document
           .getElementById(`box-${qpos2[1]}${qpos2[0]}`)!
           .classList.add("cpu");
-        ev = await this.$axios.post("https://othello-254918.appspot.com/eval", {
+        ev = await this.$axios.post("/eval", {
           board: this.encodeBoard(),
           mode: this.mode,
           difficulty: this.difficulty
@@ -213,7 +204,7 @@ export default class Game extends Vue {
     if (this.difficulty === "3") this.modetxt = "やや";
     if (this.difficulty === "1") this.modetxt = "きもーち";
     this.modetxt += this.mode === "settai" ? "接待" : "本気";
-    const init = await this.$axios.get("https://othello-254918.appspot.com");
+    const init = await this.$axios.get("");
     if (init.status !== 200) {
       this.$router.push("/error");
     }
@@ -227,14 +218,11 @@ export default class Game extends Vue {
       [".", ".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", ".", "."]
     ];
-    const { data } = await this.$axios.post(
-      "https://othello-254918.appspot.com/eval",
-      {
-        board: this.encodeBoard(),
-        mode: this.mode,
-        difficulty: this.difficulty
-      }
-    );
+    const { data } = await this.$axios.post("/eval", {
+      board: this.encodeBoard(),
+      mode: this.mode,
+      difficulty: this.difficulty
+    });
     for (let y = 0; y < 8; y++) {
       for (let x = 0; x < 8; x++) {
         document.getElementById(`box-${y}${x}`)!.classList.remove("putable");
@@ -289,7 +277,7 @@ export default class Game extends Vue {
 #you-score,
 #cpu-score {
   font-family: "Noto Serif JP", serif;
-  font-size: 88px !important;
+  font-size: 99px !important;
 }
 
 #you-score {
