@@ -41,10 +41,10 @@
     </h2>
     <Accordion>
       <p style="margin: .5em">
-        自駒の重み = <input class="weight1" type="number" v-model="w_1">
+        CPUの駒の重み = <input class="weight1" type="number" v-model="w_1">
       </p>
       <p style="margin: .5em">
-        敵駒の重み = <input class="weight1" type="number" v-model="w_2">
+        あなたの駒の重み = <input class="weight1" type="number" v-model="w_2">
       </p>
       <p style="margin: .1em">
         全体の重みは以下の3つの重みの和に相当する．
@@ -100,7 +100,7 @@ export default class Adv extends Vue {
   f_22: number = 1;
   f_23: number = 1;
   w_1: number = 1;
-  w_2: number = 1;
+  w_2: number = -1;
   W: number[][] = [
     [70, -12, 0, -1, -1, 0, -12, 70],
     [-12, -15, -3, -3, -3, -3, -15, -12],
@@ -234,7 +234,7 @@ export default class Adv extends Vue {
 }
 
 .weight1 {
-  width: 35px;
+  width: 70px;
   height: 35px;
   font-size: 18px;
   text-align: center;
