@@ -141,6 +141,10 @@ export default class Adv extends Vue {
       W[y2][x] = v;
       W[y][x2] = v;
       W[y2][x2] = v;
+      W[x][y] = v;
+      W[x2][y] = v;
+      W[x][y2] = v;
+      W[x2][y2] = v;
     }
     this.W = W;
   }
