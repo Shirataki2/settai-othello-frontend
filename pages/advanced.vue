@@ -1,7 +1,10 @@
 <template>
   <div class="container" align="center">
-    <h1 id="maintitle">
-      高度オセロ
+    <h1 id="maintitle" v-if="difficulty != 0">
+      高度{{picked === 'settai' ? "接待" : "卍"}}オセロ
+    </h1>
+    <h1 id="maintitle" v-if="difficulty == 0">
+      乱択オセロ
     </h1>
     <h2 class="menu">
       盤面の重み設定
