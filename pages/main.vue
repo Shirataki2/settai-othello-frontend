@@ -212,10 +212,15 @@ export default class Game extends Vue {
       if (this.difficulty === "4") this.modetxt = "";
       if (this.difficulty === "3") this.modetxt = "やや";
       if (this.difficulty === "1") this.modetxt = "きもーち";
+      this.modetxt += this.mode === "settai" ? "接待" : "本気";
     } else {
-      this.modetxt = "カスタマイズド";
+      if (this.difficulty.toString() === "0") {
+        this.modetxt += "乱択";
+      } else {
+        this.modetxt = "カスタマイズド";
+        this.modetxt += this.mode === "settai" ? "接待" : "本気";
+      }
     }
-    this.modetxt += this.mode === "settai" ? "接待" : "本気";
     const init = await this.$axios.get("");
     if (init.status !== 200) {
       this.$router.push("/error");

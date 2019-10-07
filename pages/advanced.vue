@@ -74,7 +74,7 @@
     <a @click="play" class="btn-flat-border">ゲーム開始！</a>
     <p style="margin: .2em">OR...</p>
     <a @click="$router.push('/')" class="btn-flat-border">詳細設定モードから抜け出す</a>
-    <p style="margin: 2em;">Version 2.0</p>
+    <p style="margin: 2em;">Version 2.1</p>
     <p style="margin: 0em;">&copy; KCS 2019</p>
   </div>
 </template>
