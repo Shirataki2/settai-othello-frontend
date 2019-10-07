@@ -30,10 +30,10 @@
     </h2>
     <Accordion>
       <p style="margin: .5em">
-        コマ数の差による重み = <input class="weight1" type="number" v-model="f_11"> × (<input class="weight1" type="number" v-model="f_12"> × 自分のコマ数 - <input class="weight1" type="number" v-model="f_13"> × 相手のコマ数)
+        コマ数の差による重み = <input class="weight1" type="number" v-model="f_11"> × (<input class="weight1" type="number" v-model="f_12"> × CPUのコマ数 - <input class="weight1" type="number" v-model="f_13"> × あなたのコマ数)
       </p>
       <p>
-        手数の差による重み = <input class="weight1" type="number" v-model="f_21"> × (<input class="weight1" type="number" v-model="f_22"> × 自分の手数 - <input class="weight1" type="number" v-model="f_23"> × 相手の手数)
+        手数の差による重み = <input class="weight1" type="number" v-model="f_21"> × (<input class="weight1" type="number" v-model="f_22"> × CPUの手数 - <input class="weight1" type="number" v-model="f_23"> × あなたの手数)
       </p>
     </Accordion>
     <h2 class="menu">
