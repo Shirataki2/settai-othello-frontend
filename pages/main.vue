@@ -63,6 +63,12 @@ export default class Game extends Vue {
     return "color: green;";
   }
 
+  get adv() {
+    if (this.$store.state.adv)
+      return { adv: true, W: this.$store.state.W, w: this.$store.state.w };
+    else return { adv: false };
+  }
+
   back() {
     this.$router.push("/");
   }
@@ -87,7 +93,8 @@ export default class Game extends Vue {
       x: x,
       y: y,
       mode: this.mode,
-      difficulty: this.difficulty
+      difficulty: this.difficulty,
+      ...this.adv
     });
     this.help = "CPU思考中...";
     const p: string[][] = data.player;
@@ -146,7 +153,8 @@ export default class Game extends Vue {
         x: -1,
         y: -1,
         mode: this.mode,
-        difficulty: this.difficulty
+        difficulty: this.difficulty,
+        ...this.adv
       });
       const q2: string[][] = data.com;
       const qpos2: [number, number] | string = data.pos;
@@ -200,9 +208,13 @@ export default class Game extends Vue {
   async mounted() {
     this.mode = this.$store.state.mode;
     this.difficulty = this.$store.state.difficulty;
-    if (this.difficulty === "4") this.modetxt = "";
-    if (this.difficulty === "3") this.modetxt = "やや";
-    if (this.difficulty === "1") this.modetxt = "きもーち";
+    if (!this.$store.state.adv) {
+      if (this.difficulty === "4") this.modetxt = "";
+      if (this.difficulty === "3") this.modetxt = "やや";
+      if (this.difficulty === "1") this.modetxt = "きもーち";
+    } else {
+      this.modetxt = "カスタマイズド";
+    }
     this.modetxt += this.mode === "settai" ? "接待" : "本気";
     const init = await this.$axios.get("");
     if (init.status !== 200) {
